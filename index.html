@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- <link rel="stylesheet" href="./node_modules/imagehover.css/css/imagehover.min.css"> -->
+    <style>
+
+
+       .stack-img{
+         width: 200px;
+         height: 300px;
+         object-fit: cover;
+         transform: rotate(10deg);
+         margin-left: -150px;
+         border: 5px solid white;
+         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+         transition: 0.7s;
+       }
+      .stack-img:nth-child(1){
+        margin-left: 0;
+      }
+      .active{
+        transform: rotate(-15deg) translateX(-100px) scale(1.1) translateY(-40px);
+
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row m-5 " >
+            <div class="col-12">
+                <div class=" mt-5 ">
+                    <img class=" stack-img" src="./asserts/khin1.jpg" alt="">
+                    <img class=" stack-img" src="./asserts/khin2.jpg" alt="">
+                    <img class=" stack-img" src="./asserts/khin3.jpg" alt="">
+                    <img class=" stack-img" src="./asserts/khin4.jpg" alt="">
+                    <img class=" stack-img" src="./asserts/khin5.jpg" alt="">
+                    <img class=" stack-img" src="./asserts/khin6.jpg" alt="">
+                    <img class=" stack-img" src="./asserts/khin7.jpg" alt="">
+                    <img class=" stack-img" src="./asserts/khin8.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+  <button class="btn btn-primary " id="start" onclick="start()">start</button>
+  <button class="btn btn-primary " id="stop" onclick="stop()">stop</button>
+  <button class="btn btn-primary " id="auto">auto</button>
+    <script>
+
+    let allstackImages = document.querySelectorAll(".stack-img")
+    let currentStack = 0;
+    function run(){
+        if(currentStack>0){
+          allstackImages[currentStack-1].classList.remove("active");
+        }else{
+            allstackImages[allstackImages.length-1].classList.remove("active");
+        }
+       allstackImages[currentStack].classList.add("active");
+       if(currentStack === allstackImages.length-1){
+        currentStack = 0;
+       }else
+         {
+          currentStack++;
+
+        }
+     };
+
+let runner;
+
+    function start(){
+        runner= setInterval(run,1000);
+    }
+    function stop(){
+        clearInterval(runner);
+    }
+    </script>
+</body>
+</html>
